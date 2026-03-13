@@ -1,0 +1,65 @@
+{
+  "id": "openclaw-langfuse-trace",
+  "name": "OpenClaw Langfuse Trace",
+  "version": "0.1.0",
+  "description": "Report OpenClaw execution traces to Langfuse via OpenTelemetry",
+  "type": "plugin",
+  "entry": "./dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "baseUrl": {
+        "type": "string",
+        "default": "https://cloud.langfuse.com",
+        "description": "Langfuse base URL; OTLP traces are sent to /api/public/otel/v1/traces"
+      },
+      "publicKey": {
+        "type": "string",
+        "default": "",
+        "description": "Langfuse public key"
+      },
+      "secretKey": {
+        "type": "string",
+        "default": "",
+        "description": "Langfuse secret key"
+      },
+      "serviceName": {
+        "type": "string",
+        "default": "openclaw-agent",
+        "description": "Service name for traces"
+      },
+      "environment": {
+        "type": "string",
+        "default": "",
+        "description": "Optional Langfuse environment name"
+      },
+      "release": {
+        "type": "string",
+        "default": "",
+        "description": "Optional Langfuse release or version label"
+      },
+      "debug": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable debug logging"
+      },
+      "batchSize": {
+        "type": "number",
+        "default": 10,
+        "description": "Number of spans to buffer before sending"
+      },
+      "batchInterval": {
+        "type": "number",
+        "default": 5000,
+        "description": "Maximum time (ms) to wait before sending buffered spans"
+      },
+      "enabledHooks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of hooks to enable (if not set, all hooks are enabled)"
+      }
+    }
+  }
+}

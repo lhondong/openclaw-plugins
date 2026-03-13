@@ -1,0 +1,49 @@
+{
+  "name": "openclaw-langfuse-trace",
+  "version": "0.1.0",
+  "description": "OpenClaw Plugin for reporting traces to Langfuse via OpenTelemetry",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json"
+  ],
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "langfuse",
+    "tracing",
+    "opentelemetry"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.48.0",
+    "@opentelemetry/resources": "^1.22.0",
+    "@opentelemetry/sdk-trace-base": "^1.22.0",
+    "@opentelemetry/semantic-conventions": "^1.22.0"
+  }
+}
