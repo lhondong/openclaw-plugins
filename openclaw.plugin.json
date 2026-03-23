@@ -1,0 +1,83 @@
+{
+  "id": "openclaw-langfuse-trace",
+  "name": "Langfuse OpenClaw Observability Plugin",
+  "version": "0.1.2",
+  "description": "Report OpenClaw traces to Langfuse via OpenTelemetry",
+  "type": "plugin",
+  "entry": "./dist/index.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "langfuseBaseUrl": {
+        "type": "string",
+        "description": "Langfuse base URL, for example https://cloud.langfuse.com, https://us.cloud.langfuse.com, or your self-hosted URL"
+      },
+      "langfusePublicKey": {
+        "type": "string",
+        "description": "Langfuse project public key (pk-lf-...)"
+      },
+      "langfuseSecretKey": {
+        "type": "string",
+        "description": "Langfuse project secret key (sk-lf-...)"
+      },
+      "endpoint": {
+        "type": "string",
+        "description": "Deprecated direct OTLP traces endpoint override. If set, the plugin skips Langfuse key-based URL construction."
+      },
+      "headers": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "default": {},
+        "description": "Additional headers merged into the trace exporter request"
+      },
+      "serviceName": {
+        "type": "string",
+        "description": "Resource service.name used on exported traces"
+      },
+      "environment": {
+        "type": "string",
+        "default": "default",
+        "description": "Langfuse tracing environment tag"
+      },
+      "debug": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable debug logging"
+      },
+      "openclawNativeMetrics": {
+        "type": "boolean",
+        "default": false,
+        "description": "Deprecated. Langfuse OTLP ingestion does not accept metrics, so this flag is ignored."
+      },
+      "log": {
+        "type": "boolean",
+        "default": false,
+        "description": "Deprecated. Langfuse OTLP ingestion does not accept logs, so this flag is ignored."
+      },
+      "reportDiagnosticsLog": {
+        "type": "boolean",
+        "default": false,
+        "description": "Deprecated. Langfuse OTLP ingestion does not accept logs, so this flag is ignored."
+      },
+      "diagnosticsLogEndpoint": {
+        "type": "string",
+        "description": "Deprecated and ignored"
+      },
+      "allowUserDetailInfoReport": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to include detailed OpenClaw payloads on spans (user/session/message/tool content)"
+      },
+      "extraResourceAttributes": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "default": {},
+        "description": "Additional OTEL resource attributes"
+      }
+    }
+  }
+}

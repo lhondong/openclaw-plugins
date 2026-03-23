@@ -1,0 +1,48 @@
+{
+  "name": "openclaw-langfuse-trace",
+  "version": "0.1.4",
+  "description": "OpenClaw Plugin for reporting traces to Langfuse via OpenTelemetry",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src",
+    "openclaw.plugin.json",
+    "README.md",
+    "LICENCE",
+    "tsconfig.json",
+    "eslint.config.js"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src",
+    "check": "npm run build && node --check dist/index.js && node --check dist/trace/index.js && node --check dist/trace/context.js && node --check dist/trace/span.js && node --check dist/openclawNative/service.js && node --check dist/log/index.js && node --check dist/utils/genaiConst.js && node --check dist/utils/langfuseConst.js",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.213.0",
+    "@opentelemetry/resources": "^2.6.0",
+    "@opentelemetry/sdk-trace-base": "^2.6.0",
+    "@opentelemetry/sdk-trace-node": "^2.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "javascript-obfuscator": "5.3.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.57.0"
+  }
+}
